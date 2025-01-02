@@ -1,4 +1,4 @@
-import {ContactShadows, Environment, Float, PresentationControls, useGLTF} from '@react-three/drei';
+import {ContactShadows, Environment, Float, Html, PresentationControls, useGLTF} from '@react-three/drei';
 
 export default function Experience() {
     const computer = useGLTF('./macbook_model.gltf');
@@ -15,7 +15,25 @@ export default function Experience() {
             snap={{mass: 4, tension: 400}}
         >
             <Float rotationIntensity={0.4}>
-                <primitive object={computer.scene} position-y={-1.2}/>
+                <rectAreaLight
+                    width={2.5}
+                    height={1.65}
+                    intensity={65}
+                    color={'#edf2f8'}
+                    rotation={[-0.1, Math.PI, 0]}
+                    position={[0, 0.55, -1.15]}
+                />
+                <primitive object={computer.scene} position-y={-1.2}>
+                    <Html
+                        transform
+                        wrapperClass="htmlScreen"
+                        distanceFactor={1.17}
+                        position={[0, 1.56, -1.4]}
+                        rotation-x={-0.256}
+                    >
+                        <iframe src="https://piotr.rzadkowolski.dev/"/>
+                    </Html>
+                </primitive>
             </Float>
         </PresentationControls>
         <ContactShadows
